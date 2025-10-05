@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9r^0f!!l%q2i1$_y51=jv%$12zr*vl%k!wnyf-r%pobx+=wmig
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['swehackathon.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'swehackathon.onrender.com']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myapp.apps.MyappConfig'
 ]
 
 MIDDLEWARE = [
