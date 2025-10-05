@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="131f134b-43f5-47f3-879b-5c03e45c4d93" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/myapp/migrations/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SWEHackathon/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SWEHackathon/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SWEHackathon/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SWEHackathon/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapp/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/myapp/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -38,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Django Server.SWEHackathon.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
@@ -95,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759671798401</updated>
-      <workItem from="1759671799465" duration="2918000" />
+      <workItem from="1759671799465" duration="4749000" />
     </task>
     <servers />
   </component>

@@ -506,7 +506,7 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
-        {% comment %} /* Live Ticker */
+        /* Live Ticker */
         .ticker-wrapper {
             background: linear-gradient(90deg, var(--royal-purple), var(--deep-violet));
             padding: 1rem 0;
@@ -544,7 +544,7 @@
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-        } {% endcomment %}
+        }
         /* Footer */
         footer {
             background: var(--darker-bg);
@@ -730,14 +730,16 @@
     <div class="gradient-bg"></div>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo">
-                Student <span>Portal</span>
+            <a href="#home" class="logo">
+                IIT <span>ROPAR</span>
             </a>
             <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#features" class="nav-link">Portal</a></li>
-                <li><a href="#events" class="nav-link">Quick Access</a></li>
-                <li><a href="/notices" class="nav-link">Notices</a></li>
-                <li><a href="/resources" class="nav-link">Resources</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#" class="nav-link">Notices</a></li>
+                <li><a href="#" class="nav-link">Resources</a></li>
+                <li><a href="#" class="nav-cta">Login</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -749,19 +751,19 @@
     <section class="hero" id="home">
         <canvas id="particles-canvas"></canvas>
         <div class="hero-content">
-            <p class="hero-subtitle">Student Portal<br>IIT Ropar</p>
-            <h3 class="hero-title">Hello, Gurnoor!</h3>
+            <p class="hero-subtitle">WELCOME TO THE FUTURE</p>
+            <h1 class="hero-title">Student Portal<br>IIT Ropar</h1>
             <p class="hero-description">
                 Experience academic excellence through innovation. Your gateway to seamless campus life,
                 where technology meets tradition in perfect harmony.
             </p>
             <div class="hero-buttons">
                 <a href="#features" class="btn-primary">Explore Portal</a>
-                <a href="#events" class="btn-secondary">Quick Access</a>
+                <a href="#" class="btn-secondary">Quick Access</a>
             </div>
         </div>
     </section>
-    {% comment %} <div class="ticker-wrapper">
+    <div class="ticker-wrapper">
         <div class="ticker-content">
             <div class="ticker-item"><span class="ticker-badge">NEW</span> Mid-semester examinations begin from November 15th</div>
             <div class="ticker-item"><span class="ticker-badge">EVENT</span> Zeitgeist 2025 registrations now open</div>
@@ -772,7 +774,7 @@
             <div class="ticker-item"><span class="ticker-badge">NOTICE</span> Library timings extended till midnight during exams</div>
             <div class="ticker-item"><span class="ticker-badge">UPDATE</span> New courses available for Spring semester</div>
         </div>
-    </div> {% endcomment %}
+    </div>
     <section class="features" id="features">
         <div class="section-header">
             <p class="section-subtitle">QUICK ACCESS</p>
@@ -785,13 +787,13 @@
                 <p class="feature-description">
                     AI-powered schedule management with real-time updates, conflict detection, and personalized reminders for your classes.
                 </p>
-                <a href="/timetable" class="feature-link">View Schedule →</a>
+                <a href="#" class="feature-link">View Schedule →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📢</div>
-                <h3 class="feature-title">Notices</h3>
+                <h3 class="feature-title">Live Notices</h3>
                 <p class="feature-description">
-                    Stay informed with instant notifications, department updates, and important announcements.
+                    Stay informed with instant notifications, department updates, and important announcements delivered in real-time.
                 </p>
                 <a href="#" class="feature-link">View Notices →</a>
             </div>
@@ -801,7 +803,7 @@
                 <p class="feature-description">
                     Discover and register for campus events, workshops, competitions, and cultural activities happening around you.
                 </p>
-                <a href="/events" class="feature-link">Browse Events →</a>
+                <a href="#" class="feature-link">Browse Events →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📚</div>
@@ -839,8 +841,8 @@
             <div class="event-card">
                 <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop');"></div>
                 <div class="event-content">
-                    <span class="event-date">O 22, 2025</span>
-                    <h3 class="event-title">Epicure Hunt</h3>
+                    <span class="event-date">NOV 22, 2025</span>
+                    <h3 class="event-title">Zeitgeist '25</h3>
                     <p class="event-type">Annual Cultural Fest</p>
                 </div>
             </div>
@@ -856,7 +858,7 @@
                  <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop');"></div>
                 <div class="event-content">
                     <span class="event-date">DEC 18, 2025</span>
-                    <h3 class="event-title">Entrepreneurship Conclave by E-Cell</h3>
+                    <h3 class="event-title">Entrepreneurship Conclave</h3>
                     <p class="event-type">Seminar</p>
                 </div>
             </div>
@@ -874,10 +876,10 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="https://iitrpr.ac.in">Main Website</a></li>
-                    <li><a href="https://iitrpr.ac.in/academic-calendar">Academic Calendar</a></li>
-                    <li><a href="https://iitrpr.ac.in/library">Library Portal</a></li>
-                    <li><a href="https://iitrpr.ac.in/hostel">Hostel Management</a></li>
+                    <li><a href="#">Main Website</a></li>
+                    <li><a href="#">Academic Calendar</a></li>
+                    <li><a href="#">Library Portal</a></li>
+                    <li><a href="#">Hostel Management</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -885,7 +887,7 @@
                  <ul class="footer-links">
                     <li><a href="mailto:support@iitrpr.ac.in">support@iitrpr.ac.in</a></li>
                     <li><a href="tel:+91-1881-242106">+91-1881-242106</a></li>
-                    <li><a href="">Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
+                    <li><a href="#">Indian Institute of Technology Ropar, Rupnagar, Punjab, INDIA 140001</a></li>
                 </ul>
             </div>
         </div>
