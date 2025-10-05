@@ -779,8 +779,8 @@
                 Student <span>Portal</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="home.html#features" class="nav-link">Portal</a></li>
-                <li><a href="home.html#events" class="nav-link">Quick Access</a></li>
+                <li><a href="/#features" class="nav-link">Portal</a></li>
+                <li><a href="/#events" class="nav-link">Quick Access</a></li>
                 <li><a href="/notifications" class="nav-link">Notices</a></li>
                 <li><a href="/resources" class="nav-link">Resources</a></li>
             </ul>
@@ -799,9 +799,9 @@
             <p class="hero-description">
                 Discover exceptional opportunities, connect with industry leaders, and access the resources you need to launch a successful career.
             </p>
-            <form class="career-search-bar">
-                <input type="text" placeholder="Search for jobs, internships, or companies...">
-                <button type="submit" class="btn-primary">Search</button>
+            <form class="career-search-bar" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Search for jobs, internships, or companies..." aria-label="Search careers">
+                <button type="button" class="btn-primary">Search</button>
             </form>
         </div>
     </section>
@@ -845,12 +845,12 @@
             <h2 class="section-title">Trusted by Industry Leaders</h2>
         </div>
         <div class="companies-grid">
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google"></div>
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon"></div>
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft"></div>
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Goldman-Sachs-Logo.svg/1200px-Goldman-Sachs-Logo.svg.png" alt="Goldman Sachs"></div>
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/800px-Infosys_logo.svg.png" alt="Infosys"></div>
-            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google logo"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon logo"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft logo"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Goldman-Sachs-Logo.svg/1200px-Goldman-Sachs-Logo.svg.png" alt="Goldman Sachs logo"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/800px-Infosys_logo.svg.png" alt="Infosys logo"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS logo"></div>
         </div>
     </section>
 
@@ -926,7 +926,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <a href="#home" class="logo" style="font-size: 2rem; margin-bottom: 1.5rem; justify-content: center; @media (min-width: 769px) { justify-content: flex-start; }">
+                <a href="/" class="logo" style="font-size: 2rem; margin-bottom: 1.5rem;">
                     IIT <span>ROPAR</span>
                 </a>
                 <p style="color: var(--text-secondary);">Your central hub for academic life, innovation, and campus community.</p>
@@ -945,7 +945,7 @@
                  <ul class="footer-links">
                     <li><a href="mailto:support@iitrpr.ac.in">support@iitrpr.ac.in</a></li>
                     <li><a href="tel:+91-1881-242106">+91-1881-242106</a></li>
-                    <li><a>Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
+                    <li><a href="https://iitrpr.ac.in/contact">Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
                 </ul>
             </div>
         </div>
