@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     # When someone visits the base URL of this app, run the hello_world view.
     path('', views.home, name='home'),
-    path('notice/', views.notice, name='notice'),
+    path('notifications/', views.notice, name='notice'),
+    path('timetable/', views.timetable, name='timetable'),
+    path('events/', views.events, name='events'),
 
 ]

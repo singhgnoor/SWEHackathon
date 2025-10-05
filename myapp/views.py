@@ -7,4 +7,12 @@ def home(request):
 
 
 def notice(request):
-    return None
+    return render(request, 'notice.html')
+
+
+def timetable(request):
+    return render(request, 'timetable.html')
+
+
+def events(request):
+    return render(request, 'events.html')

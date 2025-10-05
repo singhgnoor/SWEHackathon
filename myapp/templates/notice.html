@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - IIT Ropar</title>
+    <title>Notifications - IIT Ropar</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        /* --- [UNCHANGED CSS FROM PREVIOUS VERSION] --- */
+        /* --- [UNCHANGED CSS FROM PREVIOUS FILES] --- */
         * {
             margin: 0;
             padding: 0;
@@ -153,118 +153,176 @@
             border-radius: 2px; animation: loading 2s ease-in-out infinite;
         }
         @keyframes loading { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
-        .btn-primary {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
-            color: var(--dark-bg);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
-        }
 
-        .events-page-section {
+        /* --- [NEW CSS FOR NOTIFICATIONS PAGE] --- */
+        .main-content-section {
             padding: 10rem 2rem 6rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
-        .event-showcase-card {
+        .page-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
+            grid-template-columns: 2fr 1.2fr;
             gap: 3rem;
+            align-items: flex-start;
+        }
+        .column-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+        .notifications-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .notification-card {
             background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            backdrop-filter: blur(15px);
-        }
-        .event-showcase-card:nth-child(even) .event-image-container {
-            order: 2;
-        }
-        .event-image-container {
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
         }
-        .event-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
+        .notification-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--soft-gold);
         }
-        .event-image-container:hover img {
-            transform: scale(1.05);
-        }
-        .event-tag {
+        .notification-icon {
+            font-size: 1.8rem;
+            margin-top: 5px;
             background: linear-gradient(135deg, var(--royal-purple), var(--deep-violet));
-            color: var(--text-primary);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .event-details-container h3 {
+        .notification-content h4 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
-        .event-date {
+        .notification-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .notification-meta {
+            font-size: 0.85rem;
             color: var(--soft-gold);
             font-weight: 500;
+        }
+        .fests-column {
+            position: sticky;
+            top: 120px;
+        }
+        .fest-card {
+            background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
-        .event-description {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
+        .fest-card.active {
+             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
-        .event-highlights-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2.5rem;
+        .fest-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
         }
-        .event-highlights-list li {
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
+        .fest-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-        .event-highlights-list li::before {
-            content: '✓';
-            color: var(--gold-accent);
-            position: absolute;
-            left: 0;
+        .fest-logo { font-size: 1.5rem; }
+        .fest-title h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
             font-weight: 700;
         }
+        .fest-title span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .fest-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .fest-card.active .fest-toggle {
+            transform: rotate(45deg);
+            color: var(--gold-accent);
+        }
+        .fest-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .fest-details-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .fest-details-content p {
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+            line-height: 1.7;
+        }
+        .fest-schedule h6 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--soft-gold);
+        }
+        .fest-schedule ul {
+            list-style: none;
+            padding-left: 1rem;
+            border-left: 2px solid var(--glass-border);
+        }
+        .fest-schedule li {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
+            color: var(--dark-bg);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 992px) {
-            .event-showcase-card {
+            .page-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
             }
-            .event-showcase-card:nth-child(even) .event-image-container {
-                order: 0;
+            .fests-column {
+                position: relative;
+                top: 0;
+                margin-top: 3rem;
             }
         }
     </style>
@@ -286,8 +344,8 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="/#features" class="nav-link">Portal</a></li>
-                <li><a href="/events.html" class="nav-link">Events</a></li>
-                <li><a href="/notifications.html" class="nav-link">Notices</a></li>
+                <li><a href="/#events" class="nav-link">Quick Access</a></li>
+                <li><a href="/notifications" class="nav-link">Notices</a></li>
                 <li><a href="/resources" class="nav-link">Resources</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
@@ -298,73 +356,130 @@
         </div>
     </nav>
 
-    <section class="events-page-section">
+    <section class="main-content-section">
         <div class="section-header">
-            <p class="section-subtitle">SIGNATURE ANNUAL EVENTS</p>
-            <h2 class="section-title">Campus Buzz</h2>
+            <p class="section-subtitle">STAY UPDATED</p>
+            <h2 class="section-title">Notifications & Events</h2>
         </div>
-
-        <div class="events-container">
-            <div class="event-showcase-card" id="cultural">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Zeitgeist Cultural Fest">
-                </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Cultural Fest</span>
-                    <h3>Zeitgeist</h3>
-                    <p class="event-date">October 24-26, 2025</p>
-                    <p class="event-description">
-                        The annual cultural-management festival of IIT Ropar, Zeitgeist is a vibrant three-day extravaganza of art, music, dance, and intellectual events, attracting talent from across the nation.
-                    </p>
-                    <ul class="event-highlights-list">
-                        <li>Electrifying Pro-Nites & Star Performances</li>
-                        <li>Competitive Dance, Music, and Dramatics Events</li>
-                        <li>Engaging Workshops & Guest Lectures</li>
-                        <li>Informal Events and Fun Activities</li>
-                    </ul>
-                    <a href="#" class="btn-primary">Visit Website & Register</a>
-                </div>
-            </div>
-
-            <div class="event-showcase-card" id="tech">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=2070&auto=format&fit=crop" alt="Advitya Tech Fest">
-                </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Tech Fest</span>
-                    <h3>Advitya</h3>
-                    <p class="event-date">February 14-16, 2026</p>
-                    <p class="event-description">
-                        Advitya is the premier technical festival of IIT Ropar, a confluence of brilliant minds showcasing cutting-edge technology, robotics, and innovation through a plethora of competitions and exhibitions.
-                    </p>
-                     <ul class="event-highlights-list">
-                        <li>Advanced Robotics and Drone Competitions</li>
-                        <li>Overnight Hackathons and Coding Challenges</li>
-                        <li>Workshops on AI, IoT, and Blockchain</li>
-                        <li>Exhibitions of futuristic projects and tech</li>
-                    </ul>
-                    <a href="#" class="btn-primary">Explore Tech Events</a>
+        <div class="page-grid">
+            <div class="notifications-column">
+                <h3 class="column-header">Recent Updates</h3>
+                <div class="notifications-feed">
+                    <div class="notification-card">
+                        <div class="notification-icon">📝</div>
+                        <div class="notification-content">
+                            <h4>Mid-Sem Lab Marks Published</h4>
+                            <p>GE103 - Marks for the mid-semester lab evaluation are now available on the portal. Please review and report any discrepancies before Oct 10th.</p>
+                            <div class="notification-meta">Prof. A. K. Singh • 2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-card">
+                        <div class="notification-icon">🔔</div>
+                        <div class="notification-content">
+                            <h4>Upcoming Quiz Announcement</h4>
+                            <p>MA101 (Linear Algebra) Quiz-2 is scheduled for Friday, Oct 10, 2025, during the tutorial slot. The syllabus will cover modules 3 & 4.</p>
+                            <div class="notification-meta">Prof. R. Sharma • 1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-card">
+                        <div class="notification-icon">🔔</div>
+                        <div class="notification-content">
+                            <h4>Class Test Scheduled</h4>
+                            <p>There will be a surprise class test for CY101 on Wednesday, Oct 8, 2025. Be prepared!</p>
+                            <div class="notification-meta">Prof. P. Verma • 2 days ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-card">
+                        <div class="notification-icon">📢</div>
+                        <div class="notification-content">
+                            <h4>Library Timings Extended</h4>
+                            <p>In view of the upcoming mid-semester exams, the library will remain open 24/7 from October 12th to October 25th. All students are requested to maintain silence.</p>
+                            <div class="notification-meta">Chief Librarian • 3 days ago</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="event-showcase-card" id="sports">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1935&auto=format&fit=crop" alt="Arohan Sports Fest">
+            <div class="fests-column">
+                <h3 class="column-header">Upcoming Fests</h3>
+                <div class="fest-card">
+                    <div class="fest-header">
+                        <div class="fest-info">
+                            <div class="fest-logo">🎉</div>
+                            <div class="fest-title">
+                                <h5>Zeitgeist</h5>
+                                <span>March 24-26, 2025</span>
+                            </div>
+                        </div>
+                        <div class="fest-toggle">+</div>
+                    </div>
+                    <div class="fest-details">
+                        <div class="fest-details-content">
+                            <p>The annual cultural-management festival of IIT Ropar, Zeitgeist is a spectacle of talent, art, and vibrant energy.</p>
+                            <div class="fest-schedule">
+                                <h6>Key Events:</h6>
+                                <ul>
+                                    <li><strong>Day 1:</strong> Inauguration, Dance Competitions, Pro Show</li>
+                                    <li><strong>Day 2:</strong> Fashion Show, Music Battles, Guest Lecture</li>
+                                    <li><strong>Day 3:</strong> Dramatics Finals, Star Night</li>
+                                </ul>
+                            </div>
+                            <a href="/events#cultural" class="btn-primary">View Full Schedule</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Sports Fest</span>
-                    <h3>Arohan</h3>
-                    <p class="event-date">March 20-22, 2026</p>
-                    <p class="event-description">
-                        Arohan is the annual sports festival that ignites the campus with competitive spirit and sportsmanship. It's a celebration of athleticism, teamwork, and the relentless pursuit of victory.
-                    </p>
-                     <ul class="event-highlights-list">
-                        <li>Inter-College Tournaments for major sports</li>
-                        <li>Intense athletic track and field events</li>
-                        <li>E-sports Arena with popular gaming titles</li>
-                        <li>Marathon and other informal fun sports</li>
-                    </ul>
-                    <a href="#" class="btn-primary">View Fixtures & Join</a>
+
+                <div class="fest-card">
+                    <div class="fest-header">
+                        <div class="fest-info">
+                            <div class="fest-logo">🚀</div>
+                            <div class="fest-title">
+                                <h5>Advitya</h5>
+                                <span>Feb 4-6, 2026</span>
+                            </div>
+                        </div>
+                        <div class="fest-toggle">+</div>
+                    </div>
+                    <div class="fest-details">
+                        <div class="fest-details-content">
+                            <p>Advitya is the premier technical festival of IIT Ropar, showcasing innovation, robotics, and the future of technology.</p>
+                             <div class="fest-schedule">
+                                <h6>Key Events:</h6>
+                                <ul>
+                                    <li><strong>Day 1:</strong> Robotics Competitions, Coding Hackathon</li>
+                                    <li><strong>Day 2:</strong> Workshops on AI/ML, Aeromodelling Show</li>
+                                    <li><strong>Day 3:</strong> Project Expo, Prize Distribution</li>
+                                </ul>
+                            </div>
+                            <a href="/events#tech" class="btn-primary">Explore Events</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fest-card">
+                    <div class="fest-header">
+                        <div class="fest-info">
+                            <div class="fest-logo">🏆</div>
+                            <div class="fest-title">
+                                <h5>Arohan</h5>
+                                <span>Mar 20-22, 2026</span>
+                            </div>
+                        </div>
+                        <div class="fest-toggle">+</div>
+                    </div>
+                     <div class="fest-details">
+                        <div class="fest-details-content">
+                            <p>Arohan is the annual sports festival, a celebration of athleticism, teamwork, and competitive spirit.</p>
+                             <div class="fest-schedule">
+                                <h6>Key Events:</h6>
+                                <ul>
+                                    <li><strong>Inter-Hostel:</strong> Cricket, Football, Basketball</li>
+                                    <li><strong>Individual:</strong> Athletics, Chess, Tennis</li>
+                                    <li><strong>Fun Events:</strong> Tug of War, Gully Cricket</li>
+                                </ul>
+                            </div>
+                            <a href="/events#sports" class="btn-primary">Register Your Team</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -427,6 +542,32 @@
                         menuToggle.classList.remove('active');
                         navLinks.classList.remove('active');
                      }
+                });
+            });
+
+            // --- [NEW SCRIPT FOR FEST ACCORDION] ---
+            const festHeaders = document.querySelectorAll('.fest-header');
+            festHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const festCard = header.parentElement;
+                    const details = festCard.querySelector('.fest-details');
+
+                    if (festCard.classList.contains('active')) {
+                        festCard.classList.remove('active');
+                        details.style.maxHeight = null;
+                    } else {
+                        // Close other open accordions
+                        festHeaders.forEach(otherHeader => {
+                            const otherCard = otherHeader.parentElement;
+                            if (otherCard.classList.contains('active')) {
+                                otherCard.classList.remove('active');
+                                otherCard.querySelector('.fest-details').style.maxHeight = null;
+                            }
+                        });
+
+                        festCard.classList.add('active');
+                        details.style.maxHeight = details.scrollHeight + 'px';
+                    }
                 });
             });
         });

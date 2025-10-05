@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Timetable - IIT Ropar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        /* --- [UNCHANGED CSS FROM PREVIOUS VERSION] --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --royal-purple: #4A148C;
+            --deep-violet: #6A1B9A;
+            --gold-accent: #FFD700;
+            --soft-gold: #F4E4C1;
+            --dark-bg: #0A0E27;
+            --darker-bg: #050714;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --teal-accent: #009688; 
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--darker-bg); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--royal-purple), var(--deep-violet)); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, var(--deep-violet), var(--gold-accent)); }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+        .gradient-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0A0E27, #1a0033, #0A0E27);
+            background-size: 400% 400%; animation: gradientShift 15s ease infinite; z-index: -2;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 0;
+            background: rgba(10, 14, 39, 0.3); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar.scrolled {
+            padding: 1rem 0; background: rgba(5, 7, 20, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+            color: var(--text-primary); text-decoration: none; display: flex;
+            align-items: center; gap: 0.5rem; transition: all 0.3s ease;
+        }
+        .logo:hover { transform: scale(1.05); }
+        .logo span {
+            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-link {
+            color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            text-transform: uppercase; letter-spacing: 1px; position: relative;
+            transition: all 0.3s ease; padding: 0.5rem 0;
+        }
+        .nav-link::before {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--gold-accent), var(--soft-gold));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover { color: var(--text-primary); }
+        .nav-link:hover::before { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--royal-purple), var(--deep-violet)); color: white;
+            padding: 0.6rem 1.5rem; border-radius: 25px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(106, 27, 154, 0.5); }
+        .menu-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 2px; background: var(--text-primary); transition: all 0.3s ease; border-radius: 2px; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-subtitle {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 3px;
+            color: var(--soft-gold); margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+            color: var(--text-primary); margin-bottom: 0.5rem; 
+        }
+        footer {
+            background: var(--darker-bg); padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--glass-border); position: relative;
+            overflow: hidden; z-index: 2;
+        }
+        .footer-content {
+            max-width: 1400px; margin: 0 auto; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem; margin-bottom: 3rem;
+        }
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem;
+            color: var(--text-primary); margin-bottom: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a {
+            color: var(--text-secondary); text-decoration: none;
+            transition: all 0.3s ease; position: relative;
+        }
+        .footer-links a:hover { color: var(--soft-gold); padding-left: 10px; }
+        .footer-bottom {
+            text-align: center; padding-top: 2rem; border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+        }
+        .footer-bottom p { margin: 0.5rem 0; }
+        .footer-heart { color: var(--gold-accent); animation: heartbeat 1.5s ease-in-out infinite; }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+                background: var(--darker-bg); flex-direction: column; justify-content: center;
+                align-items: center; transition: left 0.3s ease; z-index: 1000;
+            }
+            .nav-links.active { left: 0; }
+            .menu-toggle { display: flex; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+        }
+        .loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--darker-bg); display: flex; justify-content: center;
+            align-items: center; z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-content { text-align: center; }
+        .loader-logo {
+            font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .loader-bar { width: 200px; height: 4px; background: var(--glass-border); border-radius: 2px; overflow: hidden; }
+        .loader-progress {
+            height: 100%; background: linear-gradient(90deg, var(--gold-accent), var(--soft-gold));
+            border-radius: 2px; animation: loading 2s ease-in-out infinite;
+        }
+        @keyframes loading { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
+        .timetable-section {
+            padding: 10rem 2rem 6rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .section-specifier {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .timetable-main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .timetable-container {
+            background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+        .timetable-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .control-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .control-group label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .filter-dropdown, .export-button {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-dropdown:hover, .export-button:hover {
+            border-color: var(--soft-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .filter-dropdown option {
+            background: var(--dark-bg);
+            color: var(--text-primary);
+        }
+        .timetable-grid-wrapper {
+            overflow-x: auto; 
+        }
+        .timetable-grid {
+            display: grid;
+            grid-template-columns: 70px repeat(5, minmax(160px, 1fr));
+            grid-auto-rows: 60px;
+            gap: 8px;
+            min-width: 950px;
+        }
+        .grid-header, .time-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .grid-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+        .class-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+        .class-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--soft-gold);
+        }
+        .class-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+        }
+        .class-item.lecture::before { background: linear-gradient(180deg, var(--gold-accent), var(--soft-gold)); }
+        .class-item.lab::before { background: linear-gradient(180deg, var(--royal-purple), var(--deep-violet)); }
+        .class-item.tutorial::before { background: linear-gradient(180deg, var(--teal-accent), #4db6ac); }
+        .class-code {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        .class-title {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .class-meta {
+            font-size: 0.75rem;
+            color: var(--soft-gold);
+            margin-top: 2px;
+        }
+        .up-next-card {
+            background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: sticky;
+            top: 120px;
+        }
+        .up-next-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .up-next-header span {
+            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .next-class-info { text-align: center; margin-bottom: 2rem; }
+        .next-class-info .class-code { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .next-class-info .class-title { font-size: 1.1rem; margin-bottom: 1rem; }
+        .next-class-info .class-meta { font-size: 1rem; }
+        .countdown { margin-bottom: 2.5rem; }
+        .countdown p { text-align: center; color: var(--text-secondary); margin-bottom: 1rem; }
+        .progress-bar { height: 8px; background: var(--glass-border); border-radius: 4px; overflow: hidden; }
+        .progress-bar-inner { height: 100%; width: 70%; background: linear-gradient(90deg, var(--gold-accent), var(--soft-gold)); border-radius: 4px; }
+        .join-button {
+            display: block; width: 100%;
+            background: linear-gradient(135deg, var(--royal-purple), var(--deep-violet));
+            color: white; padding: 1rem; border-radius: 15px; text-align: center;
+            text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+        .join-button:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(106, 27, 154, 0.5); }
+        
+        @media (max-width: 1200px) {
+            .timetable-main-content { grid-template-columns: 1fr; }
+            .up-next-card { position: relative; top: 0; margin-top: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .timetable-section { padding-top: 8rem; }
+            .timetable-controls { flex-direction: column; align-items: stretch; }
+            .control-group { justify-content: space-between; }
+            .timetable-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">IIT ROPAR</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+    <div class="gradient-bg"></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                Student <span>Portal</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#features" class="nav-link">Portal</a></li>
+                <li><a href="/#events" class="nav-link">Quick Access</a></li>
+                <li><a href="/notifications" class="nav-link">Notices</a></li>
+                <li><a href="/resources" class="nav-link">Resources</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="timetable-section">
+        <div class="section-header">
+            <p class="section-subtitle">YOUR WEEKLY ACADEMIC BLUEPRINT</p>
+            <h2 class="section-title">Smart Timetable</h2>
+            <h4 class="section-specifier">1st Year CSE / Division-2 / Group-4</h4>
+        </div>
+        
+        <div class="timetable-main-content">
+            <div class="timetable-container">
+                <div class="timetable-controls">
+                    <div class="control-group">
+                        <label for="class-filter">Filter:</label>
+                        <select id="class-filter" class="filter-dropdown">
+                            <option value="all">All Classes</option>
+                            <option value="lecture">Lectures</option>
+                            <option value="lab">Labs</option>
+                            <option value="tutorial">Tutorials</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                         <button class="export-button">Export to Calendar</button>
+                    </div>
+                </div>
+                
+                <div class="timetable-grid-wrapper">
+                    <div class="timetable-grid">
+                        <div class="grid-header" style="grid-row: 1; grid-column: 1;">Time</div>
+                        <div class="grid-header" style="grid-row: 1; grid-column: 2;">Monday</div>
+                        <div class="grid-header" style="grid-row: 1; grid-column: 3;">Tuesday</div>
+                        <div class="grid-header" style="grid-row: 1; grid-column: 4;">Wednesday</div>
+                        <div class="grid-header" style="grid-row: 1; grid-column: 5;">Thursday</div>
+                        <div class="grid-header" style="grid-row: 1; grid-column: 6;">Friday</div>
+
+                        <div class="time-slot" style="grid-row: 2; grid-column: 1;">08:00</div>
+                        <div class="time-slot" style="grid-row: 3; grid-column: 1;">09:00</div>
+                        <div class="time-slot" style="grid-row: 4; grid-column: 1;">10:00</div>
+                        <div class="time-slot" style="grid-row: 5; grid-column: 1;">11:00</div>
+                        <div class="time-slot" style="grid-row: 6; grid-column: 1;">12:00</div>
+                        <div class="time-slot" style="grid-row: 7; grid-column: 1;">13:00</div>
+                        <div class="time-slot" style="grid-row: 8; grid-column: 1;">14:00</div>
+                        <div class="time-slot" style="grid-row: 9; grid-column: 1;">15:00</div>
+                        <div class="time-slot" style="grid-row: 10; grid-column: 1;">16:00</div>
+                        <div class="time-slot" style="grid-row: 11; grid-column: 1;">17:00</div>
+                        <div class="time-slot" style="grid-row: 12; grid-column: 1;">18:00</div>
+                        
+                        <div class="class-item tutorial" style="grid-column: 2; grid-row: 2 / span 1;">
+                            <div class="class-code">MA101</div><div class="class-title">Tutorial</div><div class="class-meta">G4 / EE-1</div>
+                        </div>
+                        <div class="class-item lab" style="grid-column: 2; grid-row: 4 / span 2;">
+                            <div class="class-code">GE101</div><div class="class-title">Lab</div><div class="class-meta">G4</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 2; grid-row: 6 / span 1;">
+                            <div class="class-code">HS102/103</div><div class="class-title">Lecture</div><div class="class-meta">Audi/M5/M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 2; grid-row: 11 / span 1;">
+                            <div class="class-code">NSO</div><div class="class-title">Activity</div><div class="class-meta"></div>
+                        </div>
+
+                        <div class="class-item lecture" style="grid-column: 3; grid-row: 6 / span 1;">
+                            <div class="class-code">HS102/103</div><div class="class-title">Lecture</div><div class="class-meta">Audi/M5/M6</div>
+                        </div>
+
+                        <div class="class-item lab" style="grid-column: 4; grid-row: 4 / span 2;">
+                            <div class="class-code">CY101</div><div class="class-title">Lab</div><div class="class-meta">G4,G1 / Chem Block</div>
+                        </div>
+                         <div class="class-item lecture" style="grid-column: 4; grid-row: 6 / span 1;">
+                            <div class="class-code">HS102/103</div><div class="class-title">Lecture</div><div class="class-meta">M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 4; grid-row: 8 / span 1;">
+                            <div class="class-code">MA101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 4; grid-row: 9 / span 1;">
+                            <div class="class-code">CY101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                         <div class="class-item lecture" style="grid-column: 4; grid-row: 10 / span 2;">
+                            <div class="class-code">GE103</div><div class="class-title">Lecture</div><div class="class-meta">D1,D2 / Auditorium</div>
+                        </div>
+
+                        <div class="class-item lecture" style="grid-column: 5; grid-row: 4 / span 2;">
+                            <div class="class-code">GE105</div><div class="class-title">Lecture</div><div class="class-meta">G4 / Mech Block</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 5; grid-row: 8 / span 1;">
+                            <div class="class-code">MA101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 5; grid-row: 9 / span 1;">
+                            <div class="class-code">CY101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 5; grid-row: 10 / span 2;">
+                            <div class="class-code">GE103</div><div class="class-title">Lecture</div><div class="class-meta">D1,D2 / Auditorium</div>
+                        </div>
+
+                        <div class="class-item lab" style="grid-column: 6; grid-row: 4 / span 2;">
+                            <div class="class-code">GE103</div><div class="class-title">Lab</div><div class="class-meta">G4,G5,G6 / CS Block</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 6; grid-row: 8 / span 1;">
+                            <div class="class-code">MA101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 6; grid-row: 9 / span 1;">
+                            <div class="class-code">CY101</div><div class="class-title">Lecture</div><div class="class-meta">D2 / M6</div>
+                        </div>
+                        <div class="class-item lecture" style="grid-column: 6; grid-row: 10 / span 1;">
+                            <div class="class-code">CY101</div><div class="class-title">Lecture</div><div class="class-meta">M5/M6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="up-next-card">
+                <h3 class="up-next-header">Up <span>Next</span></h3>
+                <div class="next-class-info">
+                    <div class="class-code">MA101</div>
+                    <div class="class-title">Tutorial</div>
+                    <div class="class-meta">Monday 08:00 / EE-1</div>
+                </div>
+                <div class="countdown">
+                    <p>Starts soon</p>
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner" style="width: 5%;"></div>
+                    </div>
+                </div>
+                <a href="#" class="join-button">View Course Resources</a>
+            </aside>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="/" class="logo" style="font-size: 2rem; margin-bottom: 1.5rem; justify-content: center; @media (min-width: 769px) { justify-content: flex-start; }">
+                    IIT <span>ROPAR</span>
+                </a>
+                <p style="color: var(--text-secondary);">Your central hub for academic life, innovation, and campus community.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://iitrpr.ac.in">Main Website</a></li>
+                    <li><a href="https://iitrpr.ac.in/academic-calendar">Academic Calendar</a></li>
+                    <li><a href="https://iitrpr.ac.in/library">Library Portal</a></li>
+                    <li><a href="https://iitrpr.ac.in/hostel">Hostel Management</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                 <ul class="footer-links">
+                    <li><a href="mailto:support@iitrpr.ac.in">support@iitrpr.ac.in</a></li>
+                    <li><a href="tel:+91-1881-242106">+91-1881-242106</a></li>
+                    <li><a href="">Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 IIT Ropar Student Portal. All Rights Reserved.</p>
+            <p>Designed with <span class="footer-heart">❤️</span> for the students of IIT Ropar.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Loader
+            const loader = document.getElementById('loader');
+            window.addEventListener('load', () => loader.classList.add('hidden'));
+
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const links = navLinks.querySelectorAll('a');
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                     if(navLinks.classList.contains('active')) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                     }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
