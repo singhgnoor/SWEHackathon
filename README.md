@@ -16,15 +16,9 @@ A modern, elegant, and feature-rich concept design for the IIT Ropar student por
 
 ---
 
-## Pages Included 📄
-
-1.  `home.html`: The main dashboard/home page.
-2.  `career_portal_v2.html`: The specialized career guidance page.
-
----
-
 ## Tech Stack 💻
 
+* **Python - Django**
 * **HTML5**
 * **CSS3** (with Custom Properties for theming)
 * **JavaScript** (for animations and interactivity)
