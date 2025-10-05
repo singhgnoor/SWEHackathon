@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="iitrpr.ac.in/favicon.ico">
-    <title>Student Portal - IIT Ropar</title>
+    <title>Career Portal - IIT Ropar</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         * {
@@ -183,27 +183,18 @@
         }
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 0 2rem;
+            padding: 8rem 2rem 4rem;
             overflow: hidden;
-        }
-        /* Particle Canvas */
-        #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            text-align: center;
         }
         .hero-content {
             position: relative;
             z-index: 2;
-            text-align: center;
             max-width: 1000px;
             animation: heroFadeIn 1.5s ease-out;
         }
@@ -228,7 +219,7 @@
         }
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -248,14 +239,6 @@
             line-height: 1.8;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.7s forwards;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.9s forwards;
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
@@ -287,24 +270,6 @@
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            border: 2px solid var(--glass-border);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        .btn-secondary:hover {
-            border-color: var(--soft-gold);
-            background: var(--glass-white);
-            transform: translateY(-3px);
         }
         @keyframes fadeInUp {
             from {
@@ -346,7 +311,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
         }
         .feature-card {
             background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
@@ -420,6 +384,71 @@
         .feature-link:hover {
             gap: 1rem;
         }
+        
+        /* --- NEW STYLES FOR CAREER PORTAL --- */
+
+        /* Search Bar */
+        .career-search-bar {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+        .career-search-bar input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            padding: 0 1rem;
+        }
+        .career-search-bar input::placeholder {
+            color: var(--text-secondary);
+        }
+        .career-search-bar .btn-primary {
+            padding: 0.8rem 2rem;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Companies Showcase */
+        .companies-showcase {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .companies-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .company-logo {
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(1.5);
+        }
+        .company-logo:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+        .company-logo img {
+            max-height: 50px;
+            width: auto;
+        }
+        
         /* Events Section */
         .events-showcase {
             padding: 6rem 2rem;
@@ -507,45 +536,62 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
-        {% comment %} /* Live Ticker */
-        .ticker-wrapper {
-            background: linear-gradient(90deg, var(--royal-purple), var(--deep-violet));
-            padding: 1rem 0;
-            overflow: hidden;
-            position: relative;
-            margin: 4rem 0;
-            z-index: 2;
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
         }
-        .ticker-content {
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
             display: flex;
-            animation: ticker 30s linear infinite;
-            white-space: nowrap;
+            flex-direction: column;
+            gap: 1.5rem;
         }
-        @keyframes ticker {
-            0% {
-                transform: translateX(0%);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        .ticker-item {
-            padding: 0 3rem;
+        .testimonial-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
             color: var(--text-primary);
-            font-weight: 500;
+            position: relative;
+            padding-left: 2rem;
+        }
+        .testimonial-quote::before {
+            content: '“';
+            font-size: 4rem;
+            position: absolute;
+            left: -1rem;
+            top: -1.5rem;
+            color: var(--gold-accent);
+            opacity: 0.3;
+        }
+        .testimonial-author {
             display: flex;
             align-items: center;
             gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
         }
-        .ticker-badge {
-            background: var(--gold-accent);
-            color: var(--dark-bg);
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        } {% endcomment %}
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--soft-gold);
+        }
+
+        /* --- END OF NEW STYLES --- */
+
         /* Footer */
         footer {
             background: var(--darker-bg);
@@ -630,21 +676,19 @@
             .hero-title {
                 font-size: clamp(2.5rem, 10vw, 4rem);
             }
-            .hero-buttons {
+            .career-search-bar {
                 flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
+                border-radius: 20px;
+                padding: 1rem;
             }
-            .btn-primary, .btn-secondary {
+            .career-search-bar input {
                 width: 100%;
                 text-align: center;
+                padding: 0.5rem;
+                margin-bottom: 1rem;
             }
-            .feature-grid, .events-grid {
+            .feature-grid, .events-grid, .testimonial-grid {
                 grid-template-columns: 1fr;
-            }
-            .ticker-content {
-                animation-duration: 20s;
             }
             .footer-content {
                 grid-template-columns: 1fr;
@@ -735,8 +779,8 @@
                 Student <span>Portal</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#features" class="nav-link">Portal</a></li>
-                <li><a href="#events" class="nav-link">Quick Access</a></li>
+                <li><a href="home.html#features" class="nav-link">Portal</a></li>
+                <li><a href="home.html#events" class="nav-link">Quick Access</a></li>
                 <li><a href="/notifications" class="nav-link">Notices</a></li>
                 <li><a href="/resources" class="nav-link">Resources</a></li>
             </ul>
@@ -747,118 +791,133 @@
             </div>
         </div>
     </nav>
-    <section class="hero" id="home">
-        <canvas id="particles-canvas"></canvas>
+    
+    <section class="hero" id="career-home">
         <div class="hero-content">
-            <p class="hero-subtitle">Student Portal<br>IIT Ropar</p>
-            <h3 class="hero-title">Hello, Gurnoor!</h3>
+            <p class="hero-subtitle">IIT Ropar Career Portal</p>
+            <h1 class="hero-title">Forge Your Future</h1>
             <p class="hero-description">
-                Experience academic excellence through innovation. Your gateway to seamless campus life,
-                where technology meets tradition in perfect harmony.
+                Discover exceptional opportunities, connect with industry leaders, and access the resources you need to launch a successful career.
             </p>
-            <div class="hero-buttons">
-                <a href="#features" class="btn-primary">Explore Portal</a>
-                <a href="#events" class="btn-secondary">Quick Access</a>
-            </div>
+            <form class="career-search-bar">
+                <input type="text" placeholder="Search for jobs, internships, or companies...">
+                <button type="submit" class="btn-primary">Search</button>
+            </form>
         </div>
     </section>
-    {% comment %} <div class="ticker-wrapper">
-        <div class="ticker-content">
-            <div class="ticker-item"><span class="ticker-badge">NEW</span> Mid-semester examinations begin from November 15th</div>
-            <div class="ticker-item"><span class="ticker-badge">EVENT</span> Zeitgeist 2025 registrations now open</div>
-            <div class="ticker-item"><span class="ticker-badge">NOTICE</span> Library timings extended till midnight during exams</div>
-            <div class="ticker-item"><span class="ticker-badge">UPDATE</span> New courses available for Spring semester</div>
-             <div class="ticker-item"><span class="ticker-badge">NEW</span> Mid-semester examinations begin from November 15th</div>
-            <div class="ticker-item"><span class="ticker-badge">EVENT</span> Zeitgeist 2025 registrations now open</div>
-            <div class="ticker-item"><span class="ticker-badge">NOTICE</span> Library timings extended till midnight during exams</div>
-            <div class="ticker-item"><span class="ticker-badge">UPDATE</span> New courses available for Spring semester</div>
-        </div>
-    </div> {% endcomment %}
-    <section class="features" id="features">
+
+    <section class="features" id="portal-features">
         <div class="section-header">
-            <p class="section-subtitle">QUICK ACCESS</p>
-            <h2 class="section-title">Everything You Need, One Click Away</h2>
+            <p class="section-subtitle">PORTAL FEATURES</p>
+            <h2 class="section-title">Your Comprehensive Career Toolkit</h2>
         </div>
         <div class="feature-grid">
             <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3 class="feature-title">Smart Timetable</h3>
+                <div class="feature-icon">🏢</div>
+                <h3 class="feature-title">Internship Board</h3>
                 <p class="feature-description">
-                    AI-powered schedule management with real-time updates, conflict detection, and personalized reminders for your classes.
+                    Find exclusive internship roles from top-tier companies and promising startups, curated specifically for IIT Ropar students.
                 </p>
-                <a href="/timetable" class="feature-link">View Schedule →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📢</div>
-                <h3 class="feature-title">Notices</h3>
-                <p class="feature-description">
-                    Stay informed with instant notifications, department updates, and important announcements.
-                </p>
-                <a href="/notifications" class="feature-link">View Notices →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Event Hub</h3>
-                <p class="feature-description">
-                    Discover and register for campus events, workshops, competitions, and cultural activities happening around you.
-                </p>
-                <a href="/events" class="feature-link">Browse Events →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3 class="feature-title">Study Resources</h3>
-                <p class="feature-description">
-                    Access course materials, previous papers, recorded lectures, and collaborative study spaces all in one place.
-                </p>
-                <a href="/resources" class="feature-link">Access Resources →</a>
+                <a href="#" class="feature-link">Browse Internships →</a>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💼</div>
-                <h3 class="feature-title">Career Portal</h3>
+                <h3 class="feature-title">Job Listings</h3>
                 <p class="feature-description">
-                    Explore internships, placement opportunities, and career guidance tailored to your academic profile and interests.
+                    Explore full-time and part-time job opportunities that match your skills, interests, and career aspirations.
                 </p>
-                <a href="/career" class="feature-link">Career Center →</a>
+                <a href="#" class="feature-link">Find Jobs →</a>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">Achievements</h3>
+                <div class="feature-icon">📄</div>
+                <h3 class="feature-title">AI Resume Builder</h3>
                 <p class="feature-description">
-                    Track your academic progress, certifications, and extracurricular accomplishments with a digital portfolio.
+                    Craft a winning resume with our AI-powered tool, offering templates, keyword optimization, and expert suggestions.
                 </p>
-                <a href="/achievements" class="feature-link">My Portfolio →</a>
+                <a href="#" class="feature-link">Build My Resume →</a>
             </div>
         </div>
     </section>
 
-    <section class="events-showcase" id="events">
+    <section class="companies-showcase" id="companies">
+        <div class="section-header">
+            <p class="section-subtitle">OUR RECRUITERS</p>
+            <h2 class="section-title">Trusted by Industry Leaders</h2>
+        </div>
+        <div class="companies-grid">
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Goldman-Sachs-Logo.svg/1200px-Goldman-Sachs-Logo.svg.png" alt="Goldman Sachs"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/800px-Infosys_logo.svg.png" alt="Infosys"></div>
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS"></div>
+        </div>
+    </section>
+
+    <section class="events-showcase" id="career-events">
          <div class="section-header">
-            <p class="section-subtitle">WHAT'S ON CAMPUS</p>
-            <h2 class="section-title">Upcoming Events</h2>
+            <p class="section-subtitle">GET PREPARED</p>
+            <h2 class="section-title">Upcoming Career Workshops</h2>
         </div>
         <div class="events-grid">
             <div class="event-card">
-                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop');"></div>
+                <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop');"></div>
                 <div class="event-content">
-                    <span class="event-date">O 22, 2025</span>
-                    <h3 class="event-title">Epicure Hunt</h3>
-                    <p class="event-type">Annual Cultural Fest</p>
+                    <span class="event-date">NOV 10, 2025</span>
+                    <h3 class="event-title">Resume & CV Writing Masterclass</h3>
+                    <p class="event-type">Skill Workshop</p>
                 </div>
             </div>
             <div class="event-card">
-                 <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?q=80&w=2070&auto=format&fit=crop');"></div>
+                 <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop');"></div>
                 <div class="event-content">
-                    <span class="event-date">DEC 05, 2025</span>
-                    <h3 class="event-title">AI & Robotics Workshop</h3>
-                    <p class="event-type">Tech Workshop</p>
+                    <span class="event-date">NOV 22, 2025</span>
+                    <h3 class="event-title">Alumni Networking Night</h3>
+                    <p class="event-type">Networking Event</p>
                 </div>
             </div>
             <div class="event-card">
-                 <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop');"></div>
+                 <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop');"></div>
                 <div class="event-content">
-                    <span class="event-date">DEC 18, 2025</span>
-                    <h3 class="event-title">Entrepreneurship Conclave by E-Cell</h3>
-                    <p class="event-type">Seminar</p>
+                    <span class="event-date">DEC 02, 2025</span>
+                    <h3 class="event-title">Technical Interview Bootcamp</h3>
+                    <p class="event-type">Preparation Series</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <p class="section-subtitle">SUCCESS STORIES</p>
+            <h2 class="section-title">From Our Alumni</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">The placement cell was incredibly supportive. The workshops on technical skills and mock interviews gave me the confidence to crack interviews at top tech companies.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Priya Sharma</h4>
+                        <p>Software Engineer, Google</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">The career portal made it so easy to find relevant internships. I secured a summer internship that eventually converted into a full-time offer. It all started here.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Rohan Mehra</h4>
+                        <p>Analyst, Goldman Sachs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">Connecting with alumni through the portal was a game-changer. Their guidance and referrals were invaluable in navigating my career path in the EV industry.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Anjali Singh</h4>
+                        <p>R&D Engineer, Ather Energy</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -886,7 +945,7 @@
                  <ul class="footer-links">
                     <li><a href="mailto:support@iitrpr.ac.in">support@iitrpr.ac.in</a></li>
                     <li><a href="tel:+91-1881-242106">+91-1881-242106</a></li>
-                    <li><a href="">Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
+                    <li><a>Indian Institute of Technology Ropar<br>Rupnagar<br>Punjab<br>INDIA 140001</a></li>
                 </ul>
             </div>
         </div>
@@ -933,102 +992,6 @@
                      }
                 });
             });
-
-
-            // --- Particle Canvas Animation ---
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            let particlesArray;
-
-            // Particle class
-            class Particle {
-                constructor(x, y, directionX, directionY, size, color) {
-                    this.x = x;
-                    this.y = y;
-                    this.directionX = directionX;
-                    this.directionY = directionY;
-                    this.size = size;
-                    this.color = color;
-                }
-
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                    ctx.fillStyle = 'rgba(244, 228, 193, 0.5)';
-                    ctx.fill();
-                }
-
-                update() {
-                    if (this.x > canvas.width || this.x < 0) {
-                        this.directionX = -this.directionX;
-                    }
-                    if (this.y > canvas.height || this.y < 0) {
-                        this.directionY = -this.directionY;
-                    }
-                    this.x += this.directionX;
-                    this.y += this.directionY;
-                    this.draw();
-                }
-            }
-
-            // Create particle array
-            function init() {
-                particlesArray = [];
-                let numberOfParticles = (canvas.height * canvas.width) / 9000;
-                for (let i = 0; i < numberOfParticles; i++) {
-                    let size = (Math.random() * 2) + 1;
-                    let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                    let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                    let directionX = (Math.random() * 0.4) - 0.2;
-                    let directionY = (Math.random() * 0.4) - 0.2;
-                    let color = 'rgba(244, 228, 193, 0.5)';
-                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-                }
-            }
-
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-                ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                }
-                connect();
-            }
-
-            // Connect particles
-            function connect() {
-                let opacityValue = 1;
-                for (let a = 0; a < particlesArray.length; a++) {
-                    for (let b = a; b < particlesArray.length; b++) {
-                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                            ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                        if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                            opacityValue = 1 - (distance / 20000);
-                            ctx.strokeStyle = `rgba(255, 215, 0, ${opacityValue})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.beginPath();
-                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-            }
-            
-            // Resize event
-            window.addEventListener('resize', () => {
-                canvas.width = innerWidth;
-                canvas.height = innerHeight;
-                init();
-            });
-
-            init();
-            animate();
         });
     </script>
 

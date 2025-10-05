@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - IIT Ropar</title>
+    <title>Course Resources - IIT Ropar</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        /* --- [UNCHANGED CSS FROM PREVIOUS VERSION] --- */
+        /* --- [UNCHANGED CSS FROM PREVIOUS FILES] --- */
         * {
             margin: 0;
             padding: 0;
@@ -153,119 +153,108 @@
             border-radius: 2px; animation: loading 2s ease-in-out infinite;
         }
         @keyframes loading { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
-        .btn-primary {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold-accent), var(--soft-gold));
-            color: var(--dark-bg);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
-        }
 
-        .events-page-section {
+        /* --- [NEW CSS FOR RESOURCES PAGE] --- */
+        .resources-section {
             padding: 10rem 2rem 6rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
-        .event-showcase-card {
+        .course-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .course-card {
             background: linear-gradient(135deg, var(--glass-white), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .event-showcase-card:nth-child(even) .event-image-container {
-            order: 2;
+        .course-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-        .event-image-container {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        .course-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
         }
-        .event-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        .event-image-container:hover img {
-            transform: scale(1.05);
-        }
-        .event-tag {
+        .course-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, var(--royal-purple), var(--deep-violet));
-            color: var(--text-primary);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            border-radius: 15px;
+        }
+        .course-title h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .course-title p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .resource-list-heading {
             font-weight: 600;
-            display: inline-block;
+            color: var(--soft-gold);
             margin-bottom: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .event-details-container h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-        .event-date {
-            color: var(--soft-gold);
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        .event-description {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        .event-highlights-list {
+        .resource-list {
             list-style: none;
             padding: 0;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
-        .event-highlights-list li {
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            transition: background-color 0.3s ease;
+        }
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+        .resource-item:hover {
+            background-color: var(--glass-white);
+        }
+        .resource-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .file-icon {
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
         }
-        .event-highlights-list li::before {
-            content: '✓';
+        .file-name {
+            font-size: 0.95rem;
+        }
+        .download-link {
+            color: var(--soft-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .download-link:hover {
             color: var(--gold-accent);
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-        }
-        @media (max-width: 992px) {
-            .event-showcase-card {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-            }
-            .event-showcase-card:nth-child(even) .event-image-container {
-                order: 0;
-            }
         }
     </style>
 </head>
@@ -286,7 +275,7 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="/#features" class="nav-link">Portal</a></li>
-                <li><a href="/events.html" class="nav-link">Events</a></li>
+                <li><a href="/events" class="nav-link">Events</a></li>
                 <li><a href="/notifications" class="nav-link">Notices</a></li>
                 <li><a href="/resources" class="nav-link">Resources</a></li>
             </ul>
@@ -297,75 +286,184 @@
             </div>
         </div>
     </nav>
-
-    <section class="events-page-section">
+    
+    <section class="resources-section">
         <div class="section-header">
-            <p class="section-subtitle">SIGNATURE ANNUAL EVENTS</p>
-            <h2 class="section-title">Campus Buzz</h2>
+            <p class="section-subtitle">YOUR ACADEMIC TOOLKIT</p>
+            <h2 class="section-title">Course Resources</h2>
         </div>
 
-        <div class="events-container">
-            <div class="event-showcase-card" id="cultural">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Zeitgeist Cultural Fest">
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-card-header">
+                    <div class="course-icon">📈</div>
+                    <div class="course-title">
+                        <h4>MA101</h4>
+                        <p>Calculus</p>
+                    </div>
                 </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Cultural Fest</span>
-                    <h3>Zeitgeist</h3>
-                    <p class="event-date">March 24-26, 2026</p>
-                    <p class="event-description">
-                        The annual cultural-management festival of IIT Ropar, Zeitgeist is a vibrant three-day extravaganza of art, music, dance, and intellectual events, attracting talent from across the nation.
-                    </p>
-                    <ul class="event-highlights-list">
-                        <li>Electrifying Pro-Nites & Star Performances</li>
-                        <li>Competitive Dance, Music, and Dramatics Events</li>
-                        <li>Engaging Workshops & Guest Lectures</li>
-                        <li>Informal Events and Fun Activities</li>
-                    </ul>
-                    <a href="#" class="btn-primary">Visit Website & Register</a>
-                </div>
+                <h5 class="resource-list-heading">PPT Slides</h5>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Lec 1: Intro to Calculus</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                    <li class="resource-item">
+                         <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Lec 2: Differential Calculus</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                </ul>
+                 <h5 class="resource-list-heading">Tutorials</h5>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Tutorial Sheet 1</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Tutorial Sheet 2</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Tutorial Sheet 3</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 </ul>
             </div>
 
-            <div class="event-showcase-card" id="tech">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=2070&auto=format&fit=crop" alt="Advitya Tech Fest">
+            <div class="course-card">
+                 <div class="course-card-header">
+                    <div class="course-icon">⚛️</div>
+                    <div class="course-title">
+                        <h4>CY101</h4>
+                        <p>Chemistry</p>
+                    </div>
                 </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Tech Fest</span>
-                    <h3>Advitya</h3>
-                    <p class="event-date">February 14-16, 2026</p>
-                    <p class="event-description">
-                        Advitya is the premier technical festival of IIT Ropar, a confluence of brilliant minds showcasing cutting-edge technology, robotics, and innovation through a plethora of competitions and exhibitions.
-                    </p>
-                     <ul class="event-highlights-list">
-                        <li>Advanced Robotics and Drone Competitions</li>
-                        <li>Overnight Hackathons and Coding Challenges</li>
-                        <li>Workshops on AI, IoT, and Blockchain</li>
-                        <li>Exhibitions of futuristic projects and tech</li>
-                    </ul>
-                    <a href="#" class="btn-primary">Explore Tech Events</a>
+                 <h5 class="resource-list-heading">PPT Slides</h5>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Module 1: Thermodynamics</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Module 2: Kinetics</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                </ul>
+                <h5 class="resource-list-heading">Extra Material</h5>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📎</span>
+                            <span class="file-name">Claiden Ch. 3</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 </ul>
+                 <h5 class="resource-list-heading">Tutorials</h5>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Tutorial Sheet 1</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Tutorial Sheet 2</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 </ul>
+            </div>
+            
+            <div class="course-card">
+                 <div class="course-card-header">
+                    <div class="course-icon">⚙️</div>
+                    <div class="course-title">
+                        <h4>GE103</h4>
+                        <p>Intro to Computing</p>
+                    </div>
                 </div>
+                 <h5 class="resource-list-heading">PPT Slides</h5>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Lec 1: Basics of C++</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                    <li class="resource-item">
+                         <div class="resource-info">
+                            <span class="file-icon">📄</span>
+                            <span class="file-name">Lec 2: Loops & Conditionals</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                </ul>
+                 <h5 class="resource-list-heading">Tutorials</h5>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">✍️</span>
+                            <span class="file-name">Lab Task 1</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 </ul>
             </div>
 
-            <div class="event-showcase-card" id="sports">
-                <div class="event-image-container">
-                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1935&auto=format&fit=crop" alt="Arohan Sports Fest">
+            <div class="course-card">
+                 <div class="course-card-header">
+                    <div class="course-icon">🏛️</div>
+                    <div class="course-title">
+                        <h4>HS103</h4>
+                        <p>Communication Skills</p>
+                    </div>
                 </div>
-                <div class="event-details-container">
-                    <span class="event-tag">Sports Fest</span>
-                    <h3>Arohan</h3>
-                    <p class="event-date">March 20-22, 2026</p>
-                    <p class="event-description">
-                        Arohan is the annual sports festival that ignites the campus with competitive spirit and sportsmanship. It's a celebration of athleticism, teamwork, and the relentless pursuit of victory.
-                    </p>
-                     <ul class="event-highlights-list">
-                        <li>Inter-College Tournaments for major sports</li>
-                        <li>Intense athletic track and field events</li>
-                        <li>E-sports Arena with popular gaming titles</li>
-                        <li>Marathon and other informal fun sports</li>
-                    </ul>
-                    <a href="#" class="btn-primary">View Fixtures & Join</a>
-                </div>
+                <h5 class="resource-list-heading">Extra Material</h5>
+                 <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📎</span>
+                            <span class="file-name">Reading: Indianism</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                     <li class="resource-item">
+                        <div class="resource-info">
+                            <span class="file-icon">📎</span>
+                            <span class="file-name">Reading: Vocabulary</span>
+                        </div>
+                        <a href="#" class="download-link">Download</a>
+                    </li>
+                 </ul>
             </div>
         </div>
     </section>

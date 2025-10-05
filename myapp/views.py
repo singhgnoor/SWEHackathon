@@ -16,3 +16,15 @@ def timetable(request):
 
 def events(request):
     return render(request, 'events.html')
+
+
+def resources(request):
+    return render(request, 'resources.html')
+
+
+def career(request):
+    return render(request, 'career.html')
+
+
+def achive(request):
+    return render(request, 'achive.html')
